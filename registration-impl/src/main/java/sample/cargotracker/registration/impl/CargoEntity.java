@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.impl;
 
 import com.lightbend.lagom.javadsl.persistence.PersistentEntity;
@@ -8,7 +9,6 @@ import java.util.Optional;
 import akka.Done;
 import sample.cargotracker.registration.api.Cargo;
 
-/**
  * This is an event sourced entity. It has a state, {@link CargoState}, which stores what the registered cargo caries.
  * <p/>
  * Event sourced entities are interacted with by sending them commands.  This entity supports one command,
@@ -21,23 +21,18 @@ import sample.cargotracker.registration.api.Cargo;
  * <p/>
  * This entity defines one event, the {@link CargoRegistered} event, which is emitted when a
  * {@link RegisterCargo} command is received.
- */
 public class CargoEntity extends PersistentEntity<RegistrationCommand, RegistrationEvent, CargoState> {
 
-    /**
      * An entity can define different behaviours for different states, but it will always start with an
      * initial behaviour.  This entity only has one behaviour.
-     */
     @Override
     public Behavior initialBehavior(Optional<CargoState> snapshotState) {
 
-        /**
          * Behaviour is defined using a behaviour builder. The behaviour builder starts with a state, if this
          * entity supports snapshotting (an optimisation that allows the state itself to be persisted to combine
          * many events into one), then the passed in snapshotState may have a value that can be used.
          *
          * Otherwise, the default state is to use a dummy Cargo with an id of empty string.
-         */
         BehaviorBuilder b = newBehaviorBuilder(snapshotState.orElse(
                 CargoState.builder().cargo(
                         Cargo.builder()
@@ -64,9 +59,7 @@ public class CargoEntity extends PersistentEntity<RegistrationCommand, Registrat
             return ctx.thenPersist(cargoRegistered,  evt -> ctx.reply(Done.getInstance()));
 
         });
-        /**
          * Event handler for the CargoRegistered event.
-         */
         b.setEventHandler(CargoRegistered.class,
                 // We simply update the current state to use the new cargo payload and update the timestamp
                 evt -> state()
@@ -77,10 +70,9 @@ public class CargoEntity extends PersistentEntity<RegistrationCommand, Registrat
 
        // b.setReadOnlyCommandHandler()
 
-        /**
          * We've defined all our behaviour, so build and return it.
-         */
         return b.build();
     }
 }
 
+*/

@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.impl;
 
 import akka.Done;
@@ -17,10 +18,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;
 
-/**
  * Transform the Persistent Entity events into Cassandra database
  * tables and records that can be queried from a service.
- */
 public class CargoEventProcessor extends CassandraReadSideProcessor<RegistrationEvent> {
 
     private final Logger log = LoggerFactory.getLogger(CargoEventProcessor.class);
@@ -42,12 +41,10 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
         this.writeOffset = writeOffset;
     }
 
-    /**
      * Prepare read-side table and statements
      *
      * @param session
      * @return
-     */
     @Override
     public CompletionStage<Optional<UUID>> prepare(CassandraSession session) {
         // @formatter:off
@@ -59,12 +56,10 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
         // @formatter:on
     }
 
-    /**
      * prepare read-side tables
      *
      * @param session
      * @return
-     */
     private CompletionStage<Done> prepareCreateTables(CassandraSession session) {
         // @formatter:off
         return session.executeCreateTable(
@@ -78,12 +73,10 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
         // @formatter:on
     }
 
-    /**
      * prepared statement for writing a Cargo object
      *
      * @param session
      * @return
-     */
     private CompletionStage<Done> prepareWriteCargo(CassandraSession session) {
         return session.prepare("INSERT INTO cargo (cargoId, name, description, owner,destination) VALUES (?, ?,?,?,?)").thenApply(ps -> {
             setWriteCargo(ps);
@@ -91,12 +84,10 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
         });
     }
 
-    /**
      * Prepared statement for the persistence offset
      *
      * @param session
      * @return
-     */
     private CompletionStage<Done> prepareWriteOffset(CassandraSession session) {
         return session.prepare("INSERT INTO cargo_offset (partition, offset) VALUES (1, ?)").thenApply(ps -> {
             setWriteOffset(ps);
@@ -104,37 +95,31 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
         });
     }
 
-    /**
      * Find persistence offset
      *
      * @param session
      * @return
-     */
     private CompletionStage<Optional<UUID>> selectOffset(CassandraSession session) {
         return session.selectOne("SELECT offset FROM cargo_offset")
                 .thenApply(
                         optionalRow -> optionalRow.map(r -> r.getUUID("offset")));
     }
 
-    /**
      * Bind the read side persistence to the CargoRegistered event
      *
      * @param builder
      * @return
-     */
     @Override
     public EventHandlers defineEventHandlers(EventHandlersBuilder builder) {
         builder.setEventHandler(CargoRegistered.class, this::processCargoRegistered);
         return builder.build();
     }
 
-    /**
      * Write a persistent event into the read-side optimized database.
      *
      * @param @link{CargoRegistered}
      * @param offset
      * @return
-     */
     private CompletionStage<List<BoundStatement>> processCargoRegistered(CargoRegistered event, UUID offset) {
         BoundStatement bindWriteCargo = writeCargo.bind();
         bindWriteCargo.setString("cargoId", event.getCargo().getId());
@@ -148,3 +133,4 @@ public class CargoEventProcessor extends CassandraReadSideProcessor<Registration
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.impl;
 
 import akka.Done;
@@ -24,10 +25,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 
-/**
  * Implementation of the RegistrationService.
  * Look at circuit breaker information: http://localhost:25003/_status/circuit-breaker/current
- */
 public class RegistrationServiceImpl implements RegistrationService {
 
     private final PersistentEntityRegistry persistentEntityRegistry;
@@ -35,14 +34,12 @@ public class RegistrationServiceImpl implements RegistrationService {
     private final CassandraSession db;
     private final Logger log = LoggerFactory.getLogger(RegistrationServiceImpl.class);
 
-    /**
      * Constructor with the relevant infrastructure elements injected.
      *
      * @param topics
      * @param persistentEntityRegistry
      * @param readSide
      * @param db
-     */
     @Inject
     public RegistrationServiceImpl(PubSubRegistry topics, PersistentEntityRegistry persistentEntityRegistry, CassandraReadSide readSide,
                                    CassandraSession db) {
@@ -53,31 +50,27 @@ public class RegistrationServiceImpl implements RegistrationService {
         readSide.register(CargoEventProcessor.class);
     }
 
-    /**
      * Register Cargo service call
      *
      * @return
-     */
     @Override
     public ServiceCall<NotUsed, Cargo, Done> register() {
         return (id, request) -> {
-            /* Publish received entity into topic named "Topic" */
+            // Publish received entity into topic named "Topic"
             PubSubRef<Cargo> topic = topics.refFor(TopicId.of(Cargo.class, "topic"));
             topic.publish(request);
             log.info("Cargo ID: {}.", request.getId());
-            /* Look up the Cargo entity for the given ID. */
+            // Look up the Cargo entity for the given ID.
             PersistentEntityRef<RegistrationCommand> ref =
                     persistentEntityRegistry.refFor(CargoEntity.class, request.getId());
-            /* Tell the entity to use the Cargo information in the request. */
+            // Tell the entity to use the Cargo information in the request.
             return ref.ask(RegisterCargo.of(request));
         };
     }
 
-    /**
      * Get live registrations service call
      *
      * @return
-     */
     @Override
     public ServiceCall<NotUsed, NotUsed, Source<Cargo, ?>> getLiveRegistrations() {
         return (id, req) -> {
@@ -87,13 +80,11 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
 
 
-    /**
      * Get all persisted Cargo services call
      * Websockets capable
      *
      * @return
      * @deprecated
-     */
     public ServiceCall<NotUsed, NotUsed, Source<Cargo, ?>> getAllRegistrationsOld() {
         log.info("Select all cargo .");
         return (id, req) -> {
@@ -109,11 +100,9 @@ public class RegistrationServiceImpl implements RegistrationService {
         };
     }
 
-    /**
      * Get all registered Cargo
      *
      * @return
-     */
         @Override
         public ServiceCall<NotUsed, NotUsed, PSequence<Cargo>> getAllRegistrations() {
             return (userId, req) -> {
@@ -136,3 +125,4 @@ public class RegistrationServiceImpl implements RegistrationService {
         return null;
     }
 }
+*/

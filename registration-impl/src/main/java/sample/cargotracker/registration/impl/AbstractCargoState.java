@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.impl;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -10,9 +11,7 @@ import java.util.Optional;
 import org.immutables.value.Value;
 import sample.cargotracker.registration.api.Cargo;
 
-/**
  * The state for the cargo entity.
- */
 @Value.Immutable
 @ImmutableStyle
 @JsonDeserialize(as = CargoState.class)
@@ -25,3 +24,4 @@ public interface AbstractCargoState  {
     @Value.Parameter
      LocalDateTime getTimestamp();
 }
+*/
