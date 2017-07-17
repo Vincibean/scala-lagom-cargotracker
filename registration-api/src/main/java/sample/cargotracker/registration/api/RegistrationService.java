@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.api;
 
 import static com.lightbend.lagom.javadsl.api.Service.*;
@@ -12,14 +13,11 @@ import com.lightbend.lagom.javadsl.api.ServiceCall;
 import com.lightbend.lagom.javadsl.api.transport.Method;
 import org.pcollections.PSequence;
 
-/**
  * The registration service interface.
  * <p/>
  * This describes everything that Lagom needs to know about how to serve and consume the RegistrationService.
- */
 public interface RegistrationService extends Service {
 
-    /**
      * Example: curl -H "Content-Type: application/json" -X POST -d
      * '{
      * "cargo": {
@@ -30,14 +28,14 @@ public interface RegistrationService extends Service {
      * "destination": "Metropolis"
      * }
      * }' http://localhost:9000/api/registration
-     */
-    ServiceCall<NotUsed, Cargo, Done> register();
+    ServiceCall<Cargo, Done> register();
 
-    ServiceCall<NotUsed, NotUsed, Source<Cargo, ?>> getLiveRegistrations();
+    ServiceCall<NotUsed, Source<Cargo, ?>> getLiveRegistrations();
 
-    ServiceCall<NotUsed, NotUsed, PSequence<Cargo>> getAllRegistrations();
+    ServiceCall<NotUsed, PSequence<Cargo>> getAllRegistrations();
 
-    ServiceCall<String, NotUsed, Cargo> getRegistration();
+    // TODO Should have a String ID
+    ServiceCall<NotUsed, Cargo> getRegistration();
 
     @Override
     default Descriptor descriptor() {
@@ -51,3 +49,4 @@ public interface RegistrationService extends Service {
         // @formatter:on
     }
 }
+*/

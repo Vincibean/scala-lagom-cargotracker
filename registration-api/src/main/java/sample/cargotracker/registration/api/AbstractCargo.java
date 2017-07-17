@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.registration.api;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -24,3 +25,4 @@ public interface AbstractCargo {
     @Value.Parameter
     String getDestination();
 }
+*/
