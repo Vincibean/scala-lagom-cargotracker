@@ -41,6 +41,7 @@ lazy val shippingApi = project("shipping-api")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
+      lagomScaladslApi,
       lagomJavadslApi,
       lagomJavadslImmutables
     )
