@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.shipping.api;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -30,3 +31,4 @@ public interface AbstractItinerary {
     @Value.Parameter
     PSequence<Leg> getLegs();
 }
+*/

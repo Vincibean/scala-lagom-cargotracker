@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.shipping.api;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -27,3 +28,4 @@ public interface AbstractLeg {
     @Value.Parameter
     Date getDepartureTime();
 }
+*/
