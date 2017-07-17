@@ -7,7 +7,11 @@ lazy val registrationApi = project("registration-api")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
+      lagomScaladslApi,
       lagomJavadslApi,
+      lagomJavadslJackson,
+      lagomJavadslPersistence,
+      lagomJavadslClient,
       lagomJavadslImmutables
     )
   )
@@ -17,6 +21,12 @@ lazy val registrationImpl = project("registration-impl")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
+      lagomScaladslPersistence,
+      lagomScaladslPersistenceCassandra,
+      lagomScaladslPubSub,
+      lagomScaladslTestKit,
+      lagomScaladslClient,
+      lagomScaladslServer,
       lagomJavadslPersistence,
       lagomJavadslPubSub,
       lagomJavadslImmutables,
