@@ -1,13 +1,15 @@
 package sample.cargotracker.shipping.impl
 
-import akka.{Done, NotUsed}
+import javax.inject.Inject
+
+import akka.Done
 import com.lightbend.lagom.scaladsl.api.ServiceCall
 import com.lightbend.lagom.scaladsl.persistence.PersistentEntityRegistry
+import com.softwaremill.macwire._
 import sample.cargotracker.registration.api.RegistrationService
 import sample.cargotracker.shipping.api.{Itinerary, Leg, ShippingService}
-import com.softwaremill.macwire._
 
-class ShippingServiceImpl(persistentEntityRegistry: PersistentEntityRegistry, registrationService: RegistrationService) extends ShippingService {
+class ShippingServiceImpl @Inject() (persistentEntityRegistry: PersistentEntityRegistry, registrationService: RegistrationService) extends ShippingService {
   persistentEntityRegistry.register(wire[ItineraryEntity])
 
   override def createItinerary(): ServiceCall[Itinerary, Done] = ServiceCall { request =>
