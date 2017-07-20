@@ -1,5 +1,7 @@
 package sample.cargotracker.registration.impl
 
+import javax.inject.Inject
+
 import akka.stream.scaladsl.Source
 import akka.{Done, NotUsed}
 import com.lightbend.lagom.scaladsl.api.ServiceCall
@@ -10,10 +12,9 @@ import org.slf4j.{Logger, LoggerFactory}
 import sample.cargotracker.registration.api.{Cargo, RegistrationService}
 
 import scala.concurrent.ExecutionContext.Implicits.global
-
 import scala.concurrent.Future
 
-class RegistrationServiceImpl(topics: PubSubRegistry, persistentEntityRegistry: PersistentEntityRegistry,
+class RegistrationServiceImpl @Inject() (topics: PubSubRegistry, persistentEntityRegistry: PersistentEntityRegistry,
                               readSide: CassandraReadSide, db: CassandraSession) extends RegistrationService {
 
   private[this] val log: Logger = LoggerFactory.getLogger(this.getClass)

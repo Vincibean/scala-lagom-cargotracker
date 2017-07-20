@@ -1,7 +1,7 @@
 package sample.cargotracker.shipping
 
 import java.util.concurrent.{CompletableFuture, CompletionStage}
-import javax.inject.Provider
+import javax.inject.{Inject, Provider}
 
 import com.fasterxml.jackson.databind.node.{ArrayNode, JsonNodeFactory, ObjectNode}
 import play.Configuration
@@ -12,7 +12,7 @@ import play.http.DefaultHttpErrorHandler
 import play.libs.Json
 import play.mvc.{Http, Result, Results}
 
-class ErrorHandler(configuration: Configuration, environment: Environment, sourceMapper: OptionalSourceMapper, routes: Provider[Router]) extends DefaultHttpErrorHandler(configuration, environment, sourceMapper, routes) {
+class ErrorHandler @Inject() (configuration: Configuration, environment: Environment, sourceMapper: OptionalSourceMapper, routes: Provider[Router]) extends DefaultHttpErrorHandler(configuration, environment, sourceMapper, routes) {
 
   override def onDevServerError(request: Http.RequestHeader, exception: UsefulException): CompletionStage[Result] = {
     val jsonError: ObjectNode = Json.newObject()

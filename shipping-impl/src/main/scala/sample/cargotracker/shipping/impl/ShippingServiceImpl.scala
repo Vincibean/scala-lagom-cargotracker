@@ -5,12 +5,10 @@ import javax.inject.Inject
 import akka.Done
 import com.lightbend.lagom.scaladsl.api.ServiceCall
 import com.lightbend.lagom.scaladsl.persistence.PersistentEntityRegistry
-import com.softwaremill.macwire._
 import sample.cargotracker.registration.api.RegistrationService
 import sample.cargotracker.shipping.api.{Itinerary, Leg, ShippingService}
 
 class ShippingServiceImpl @Inject() (persistentEntityRegistry: PersistentEntityRegistry, registrationService: RegistrationService) extends ShippingService {
-  persistentEntityRegistry.register(wire[ItineraryEntity])
 
   override def createItinerary(): ServiceCall[Itinerary, Done] = ServiceCall { request =>
     val itinerary = persistentEntityRegistry.refFor[ItineraryEntity](request.id)
