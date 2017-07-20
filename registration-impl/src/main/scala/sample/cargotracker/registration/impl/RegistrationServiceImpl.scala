@@ -9,6 +9,8 @@ import com.lightbend.lagom.scaladsl.pubsub.{PubSubRef, PubSubRegistry, TopicId}
 import org.slf4j.{Logger, LoggerFactory}
 import sample.cargotracker.registration.api.{Cargo, RegistrationService}
 
+import scala.concurrent.ExecutionContext.Implicits.global
+
 import scala.concurrent.Future
 
 class RegistrationServiceImpl(topics: PubSubRegistry, persistentEntityRegistry: PersistentEntityRegistry,
