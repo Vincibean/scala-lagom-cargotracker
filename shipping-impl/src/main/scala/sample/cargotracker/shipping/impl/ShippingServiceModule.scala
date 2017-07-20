@@ -14,8 +14,6 @@ abstract class ShippingServiceModule(context: LagomApplicationContext)
 
   override lazy val lagomServer: LagomServer = serverFor[ShippingService](wire[ShippingServiceImpl])
   lazy val registrationService: RegistrationService = serviceClient.implement[RegistrationService]
-  // lazy val persistentEntityRegistry: PersistentEntityRegistry = serviceClient.implement[PersistentEntityRegistry]
-
   persistentEntityRegistry.register(wire[ItineraryEntity])
 
 }
