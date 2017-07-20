@@ -7,9 +7,9 @@ import play.api.libs.json.{Format, Json}
 
 sealed trait ShippingEvent extends Jsonable
 
-case class ItineraryCreated(id: String, cargoId: String, origin: String, destination: String)
+case class ItineraryCreated(id: String, cargoId: String, origin: String, destination: String) extends ShippingEvent
 
-case class LegAdded(id: String, cargoId: String, location: String, arrivalTime: Date, departureTime: Date)
+case class LegAdded(id: String, cargoId: String, location: String, arrivalTime: Date, departureTime: Date) extends ShippingEvent
 
 object ItineraryCreated {
   lazy val format: Format[ItineraryCreated] = Json.format[ItineraryCreated]
