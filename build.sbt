@@ -9,12 +9,7 @@ lazy val registrationApi = project("registration-api")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
-      lagomScaladslApi,
-      lagomJavadslApi,
-      lagomJavadslJackson,
-      lagomJavadslPersistence,
-      lagomJavadslClient,
-      lagomJavadslImmutables
+      lagomScaladslApi
     )
   )
 
@@ -28,11 +23,7 @@ lazy val registrationImpl = project("registration-impl")
       lagomScaladslPubSub,
       lagomScaladslTestKit,
       lagomScaladslClient,
-      lagomScaladslServer,
-      lagomJavadslPersistence,
-      lagomJavadslPubSub,
-      lagomJavadslImmutables,
-      lagomJavadslTestKit
+      lagomScaladslServer
     )
   )
   .settings(lagomForkedTestSettings: _*)
@@ -43,9 +34,7 @@ lazy val shippingApi = project("shipping-api")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
-      lagomScaladslApi,
-      lagomJavadslApi,
-      lagomJavadslImmutables
+      lagomScaladslApi
     )
   )
 
@@ -56,12 +45,12 @@ lazy val shippingImpl = project("shipping-impl")
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
       lagomScaladslPersistence,
+      lagomScaladslPersistenceCassandra,
+      lagomScaladslPubSub,
+      lagomScaladslTestKit,
       lagomScaladslClient,
       lagomScaladslServer,
-      macwire,
-      lagomJavadslPersistence,
-      lagomJavadslImmutables,
-      lagomJavadslTestKit
+      macwire
     )
   )
   .settings(lagomForkedTestSettings: _*)
