@@ -1,3 +1,4 @@
+/*
 package sample.cargotracker.shipping.impl;
 
 import akka.Done;
@@ -15,9 +16,7 @@ import sample.cargotracker.shipping.api.ShippingService;
 
 import java.util.concurrent.CompletionStage;
 
-/**
  * Implementation of the ShippingService.
- */
 public class ShippingServiceImpl implements ShippingService {
 
     private final PersistentEntityRegistry persistentEntityRegistry;
@@ -51,3 +50,4 @@ public class ShippingServiceImpl implements ShippingService {
     }
 
 }
+*/

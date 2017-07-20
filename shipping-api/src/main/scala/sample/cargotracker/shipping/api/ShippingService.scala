@@ -8,8 +8,7 @@ trait ShippingService extends Service {
 
   def createItinerary(): ServiceCall[Itinerary, Done]
 
-  // TODO Should have a String ID
-  def addLeg(): ServiceCall[Leg, Done]
+  def addLeg(id: String): ServiceCall[Leg, Done]
 
   override def descriptor: Descriptor = {
     import Service._

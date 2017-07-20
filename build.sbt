@@ -3,6 +3,8 @@ organization in ThisBuild := "org.lightbend.lagom"
 // the Scala version that will be used for cross-compiled libraries
 scalaVersion in ThisBuild := "2.11.7"
 
+val macwire = "com.softwaremill.macwire" %% "macros" % "2.2.5" % "provided"
+
 lazy val registrationApi = project("registration-api")
   .settings(
     version := "1.0-SNAPSHOT",
@@ -53,6 +55,10 @@ lazy val shippingImpl = project("shipping-impl")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
+      lagomScaladslPersistence,
+      lagomScaladslClient,
+      lagomScaladslServer,
+      macwire,
       lagomJavadslPersistence,
       lagomJavadslImmutables,
       lagomJavadslTestKit
