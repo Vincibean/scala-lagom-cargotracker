@@ -16,7 +16,7 @@ class ShippingServiceImpl(persistentEntityRegistry: PersistentEntityRegistry, re
   }
 
   override def addLeg(id: String): ServiceCall[Leg, Done] = ServiceCall { request =>
-    val response = registrationService.getRegistration().invoke(request.getCargoId(), NotUsed.getInstance())
+    val response = registrationService.getRegistration().invoke(request.cargoId)
     val itinerary = persistentEntityRegistry.refFor[ItineraryEntity](id)
     itinerary.ask(AddLeg(request))
   }

@@ -13,8 +13,7 @@ trait RegistrationService extends Service {
 
   def getAllRegistrations(): ServiceCall[NotUsed, Seq[Cargo]]
 
-  // TODO Should have a String ID
-  def getRegistration(): ServiceCall[NotUsed, Cargo]
+  def getRegistration(): ServiceCall[String, Cargo]
 
   override def descriptor: Descriptor = {
     import Service._
